@@ -2,6 +2,7 @@ from django.contrib import auth, messages
 from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse
 
+from products.models import Basket
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 
 
@@ -54,9 +55,11 @@ def profile(request):
     else:
         form = UserProfileForm(instance=request.user)
 
+    baskets = Basket.objects.filter(user=request.user)
     context = {
         'title': 'Store - Профиль',
-        'form': form
+        'form': form,
+        'baskets': baskets,
     }
 
     return render(request, 'users/profile.html', context)
