@@ -6,6 +6,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView
 
+from common.views import TitleMixin
 from products.models import Basket
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 from users.models import User
@@ -20,16 +21,12 @@ class UserLoginView(LoginView):
     def get_success_url(self):
         return reverse_lazy("index")
 
-class UserRegistrationView(CreateView):
+class UserRegistrationView(TitleMixin,CreateView):
     model = User
     form_class = UserRegistrationForm
     template_name = 'users/register.html'
     success_url = reverse_lazy("users:login")
-
-    def get_context_data(self, **kwargs):
-        context = super(UserRegistrationView, self).get_context_data()
-        context['title'] = 'Store - Регистрация'
-        return context
+    title = 'Store - Регистрация'
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -37,18 +34,17 @@ class UserRegistrationView(CreateView):
         return response
 
 
-class UserProfileView(LoginRequiredMixin, UpdateView):
+class UserProfileView(TitleMixin, LoginRequiredMixin, UpdateView):
     model = User
     form_class = UserProfileForm
     template_name = 'users/profile.html'
     success_url = reverse_lazy('users:profile')
-
+    title = 'Store - Профиль'
     def get_object(self, queryset=None):
         return self.request.user
 
     def get_context_data(self, **kwargs):
         context = super(UserProfileView, self).get_context_data()
-        context['title'] = 'Store - Профиль'
         context['baskets'] = Basket.objects.filter(user=self.request.user)
         return context
 
