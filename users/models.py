@@ -11,7 +11,7 @@ from store_server.settings import DOMAIN_NAME, EMAIL_HOST_USER
 class User(AbstractUser):
     image = models.ImageField(upload_to='users_images', null=True, blank=True)
     is_verified_email = models.BooleanField(default=False)
-
+    email = models.EmailField(unique=True)
 class EmailVerification(models.Model):
     code = models.UUIDField(unique=True)
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
