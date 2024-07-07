@@ -43,12 +43,6 @@ class UserProfileView(TitleMixin, LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         return self.request.user
 
-    def get_context_data(self, **kwargs):
-        context = super(UserProfileView, self).get_context_data()
-        context['baskets'] = Basket.objects.filter(user=self.request.user)
-        return context
-
-
 
 class UserLogoutView(LoginRequiredMixin, LogoutView):
     next_page = reverse_lazy("index")
