@@ -11,7 +11,6 @@ from products.models import Basket
 from users.forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 from users.models import User, EmailVerification
 
-
 # Create your views here.
 
 class UserLoginView(LoginView):
@@ -63,4 +62,3 @@ class EmailVerificationView(TitleMixin, TemplateView):
 
             return super(EmailVerificationView, self).get(request, *args, **kwargs)
         return HttpResponseRedirect(reverse('index'))
-

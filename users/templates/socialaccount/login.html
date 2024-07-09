@@ -1,0 +1,51 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load allauth %}
+
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                        <div class="card-header"><h3 class="text-center font-weight-light my-4">
+                            {% blocktrans with provider.name as provider %}Connect {{ provider.name }}{% endblocktrans %}
+                        </h3></div>
+                        <div class="card-body">
+                            {% if process == "connect" %}
+
+                                {% element p %}
+                                    {% blocktrans with provider.name as provider %}You are about to connect a new
+                                        third-party account
+                                        from
+                                        {{ provider }}.{% endblocktrans %}
+                                {% endelement %}
+                            {% else %}
+
+                                {% element p %}
+                                    {% blocktrans with provider.name as provider %}You are about to sign in using a
+                                        third-party account
+                                        from
+                                        {{ provider }}.{% endblocktrans %}
+                                {% endelement %}
+                            {% endif %}
+                            {% element form method="post" no_visible_fields=True %}
+                                {% slot actions %}
+                                    {% csrf_token %}
+
+                                    <div class="row justify-content-center">
+                                        {% element button type="submit" %}
+                                            {% trans "Continue" %}
+                                        {% endelement %}
+                                    </div>
+                                {% endslot %}
+                            {% endelement %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>>
+{% endblock content %}

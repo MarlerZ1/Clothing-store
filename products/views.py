@@ -3,7 +3,7 @@ from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views.generic import TemplateView, ListView
-
+from django.urls import reverse
 from common.views import TitleMixin
 # Create your views here.
 from products.models import Product, ProductCategory, Basket
@@ -42,8 +42,7 @@ def basket_add(request, product_id):
         basket = baskets.first()
         basket.quantity += 1
         basket.save()
-
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    return HttpResponseRedirect(reverse('products:index'))
 
 @login_required
 def basket_remove(request, basket_id):
