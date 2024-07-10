@@ -13,10 +13,10 @@ from users.models import User, EmailVerification
 
 # Create your views here.
 
-class UserLoginView(LoginView):
+class UserLoginView(TitleMixin, LoginView):
     template_name = "users/login.html"
     form_class = UserLoginForm
-
+    title = 'Store - Авторизация'
     def get_success_url(self):
         return reverse_lazy("index")
 
