@@ -14,8 +14,6 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-
-
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,10 +44,12 @@ INSTALLED_APPS = [
     'products',
     'users',
 
-       'allauth',
-       'allauth.account',
-       'allauth.socialaccount',
-       'allauth.socialaccount.providers.github',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+
+    'debug_toolbar'
 ]
 
 MIDDLEWARE = [
@@ -60,8 +60,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+
 ]
 
 ROOT_URLCONF = 'store_server.urls'
@@ -148,13 +149,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = "/users/login"
 
-
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL')
-
 
 # OAuth
 SOCIALACCOUNT_QUERY_EMAIL = True
@@ -169,10 +168,21 @@ SOCIALACCOUNT_PROVIDERS = {
             'user',
             'user:email',
         ],
-    'EMAIL_AUTHENTICATION': True,
+        'EMAIL_AUTHENTICATION': True,
 
     }
 }
 LOGIN_REDIRECT_URL = 'index'
 
 SOCIALACCOUNT_ADAPTER = 'users.allauth_adapter.SocialAccountAdapter'
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",
+    }
+}
