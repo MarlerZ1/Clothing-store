@@ -1,18 +1,18 @@
 {% extends 'users/base.html' %}
-
+{% load i18n %}
 {% block content %}
     <main>
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-5">
                     <div class="card shadow-lg border-0 rounded-lg mt-5">
-                        <div class="card-header"><h3 class="text-center font-weight-light my-4">Поздравляем</h3>
+                        <div class="card-header"><h3 class="text-center font-weight-light my-4">{% translate 'Поздравляем' %}</h3>
                         </div>
                         <div class="card-body text-center">
-                            <h4>Ваша учетная запись успешно подтверждена!</h4>
+                            <h4>{% translate 'Ваша учетная запись успешно подтверждена!' %}</h4>
                         </div>
                         <div class="card-footer text-center">
-                            <div class="small"><a href="{% url 'users:login' %}">Продолжить</a></div>
+                            <div class="small"><a href="{% url 'users:login' %}">{% translate 'Продолжить' %}</a></div>
                         </div>
                     </div>
                 </div>

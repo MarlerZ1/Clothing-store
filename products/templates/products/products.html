@@ -1,5 +1,5 @@
 {% extends 'products/base.html' %}
-
+{% load i18n %}
 {% load static %}
 {% block css %}
     <link href="{% static 'vendor/css/products.css' %}" rel="stylesheet">
@@ -63,11 +63,11 @@
                                     <h4 class="card-title">
                                         <a href="#"> {{ product.name }} </a>
                                     </h4>
-                                    <h5>{{ product.price }} руб.</h5>
+                                    <h5>{{ product.price }} {% translate 'руб.' %}</h5>
                                     <p class="card-text">{{ product.description }}</p>
                                 </div>
                                 <div class="card-footer text-center">
-                                    <a  class="btn btn-outline-success" href="{% url 'products:basket_add' product.id %}">Отправить в корзину</a>
+                                    <a  class="btn btn-outline-success" href="{% url 'products:basket_add' product.id %}">{% translate 'Отправить в корзину' %}</a>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                                         {% endif %}
                                     {% else %} # {% endif %}
                                     "
-                                   tabindex="-1" aria-disabled="true">Предыдущая</a>
+                                   tabindex="-1" aria-disabled="true">{% translate 'Предыдущая' %}</a>
                             </li>
                             {% for page in page_obj.paginator.page_range %}
                                 <li class="page-item"><a class="page-link"
@@ -111,7 +111,7 @@
                                             {% url 'products:category_paginator' active_categories page_obj.next_page_number %}
                                         {% endif %}
                                    {% else %} # {% endif %}
-                                   ">Следующая</a>
+                                   ">{% translate 'Следующая' %}</a>
                             </li>
                         </ul>
                     </nav>
@@ -129,7 +129,7 @@
 {% block footer %}
 	<footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Store 2022</p>
+            <p class="m-0 text-center text-white">Copyright &copy; Store 2024</p>
         </div>
         <!-- /.container -->
     </footer>

@@ -1,24 +1,23 @@
 from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
-from django.views.generic import TemplateView, ListView
 from django.urls import reverse
+from django.views.generic import TemplateView, ListView
+
 from common.views import TitleMixin
 # Create your views here.
 from products.models import Product, ProductCategory, Basket
-
+from django.utils.translation import gettext_lazy as _
 
 class IndexView(TitleMixin, TemplateView):
     template_name = 'products\index.html'
-    title = 'Store - Главная'
+    title = _('Store - Главная')
 
 
 class ProductsListView(TitleMixin, ListView):
     model = Product
     template_name = "products\products.html"
     paginate_by = 3
-    title = 'Store - Каталог'
+    title = _('Store - Каталог')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductsListView, self).get_context_data()

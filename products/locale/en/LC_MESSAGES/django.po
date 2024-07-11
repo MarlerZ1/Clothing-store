@@ -1,0 +1,102 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-11 13:22+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\templates\products\base.html:36
+msgid "Каталог"
+msgstr "Catalogue"
+
+#: .\templates\products\base.html:40
+msgid "Войти"
+msgstr "Log in"
+
+#: .\templates\products\base.html:50
+msgid "Профиль"
+msgstr "Profile"
+
+#: .\templates\products\base.html:52
+msgid "Заказы"
+msgstr "Orders"
+
+#: .\templates\products\base.html:54
+msgid "Админ-панель"
+msgstr "Admin-Panel"
+
+#: .\templates\products\base.html:63
+msgid "Выйти"
+msgstr "Log out"
+
+#: .\templates\products\baskets.html:5
+msgid "Корзина"
+msgstr "Baskets"
+
+#: .\templates\products\baskets.html:33
+msgid "Итого"
+msgstr "Total"
+
+#: .\templates\products\baskets.html:34 .\templates\products\products.html:66
+msgid "руб."
+msgstr "Rub."
+
+#: .\templates\products\baskets.html:38
+msgid "Оформить заказ"
+msgstr "Make order"
+
+#: .\templates\products\baskets.html:42
+msgid "Корзина пуста"
+msgstr "Basket is empty"
+
+#: .\templates\products\index.html:20
+msgid "Новые образы и лучшие бренды на Store. "
+msgstr "New images and the best brands on the Store. "
+
+#: .\templates\products\index.html:21
+msgid "Бесплатная доставка по всему миру! "
+msgstr "Free worldwide shipping! "
+
+#: .\templates\products\index.html:22
+msgid "Аутлет: до -70%% Собственный бренд. "
+msgstr "Outlet: up to -70%% Own brand."
+
+#: .\templates\products\index.html:23
+msgid "-20%% новым покупателям."
+msgstr "-20%% to new customers."
+
+#: .\templates\products\index.html:27
+msgid "Начать покупки"
+msgstr "Start Shopping"
+
+#: .\templates\products\products.html:70
+msgid "Отправить в корзину"
+msgstr "Add to basket"
+
+#: .\templates\products\products.html:90
+msgid "Предыдущая"
+msgstr "Previous"
+
+#: .\templates\products\products.html:114
+msgid "Следующая"
+msgstr "Next"
+
+#: .\views.py:13
+msgid "Store - Главная"
+msgstr "Store - General"
+
+#: .\views.py:20
+msgid "Store - Каталог"
+msgstr "Store - Catalogue"
