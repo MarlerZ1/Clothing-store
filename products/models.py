@@ -11,8 +11,11 @@ class ProductCategory(models.Model):
     class Meta:
         verbose_name = 'Категория'
         verbose_name_plural = 'Категории'
+
     def __str__(self):
         return self.name
+
+
 class Product(models.Model):
     name = models.CharField(max_length=256)
     description = models.TextField()
@@ -25,12 +28,14 @@ class Product(models.Model):
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукты'
 
+
 class BasketQuerySet(models.QuerySet):
     def total_sum(self):
         return sum(basket.sum() for basket in self)
 
     def total_quantity(self):
         return sum(basket.quantity for basket in self)
+
 
 class Basket(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
@@ -42,4 +47,3 @@ class Basket(models.Model):
 
     def sum(self):
         return self.product.price * self.quantity
-
