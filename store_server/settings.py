@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
 
-    'debug_toolbar'
+    'debug_toolbar',
+    'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [
@@ -189,7 +190,7 @@ CACHES = {
     }
 }
 
-#Celery
+# Celery
 
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
