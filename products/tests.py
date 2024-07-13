@@ -2,6 +2,9 @@ from django.test import TestCase
 from django.urls import reverse
 from http import HTTPStatus
 from products.models import Product
+from store_server import settings
+
+
 # Create your tests here.
 
 
@@ -22,12 +25,11 @@ class ProductsListViewTestCase(TestCase):
         path = reverse('products:index')
         self.response = self.client.get(path)
 
+
     def test_list(self):
         products = Product.objects.all()
 
         self.assertQuerysetEqual(self.response.context_data['object_list'], products[:3], ordered=False)
-
-    def test_view(self):
         self.assertEquals(self.response.status_code, HTTPStatus.OK)
         self.assertEquals(self.response.context_data['title'], 'Store - Каталог')
         self.assertTemplateUsed(self.response, 'products\products.html')

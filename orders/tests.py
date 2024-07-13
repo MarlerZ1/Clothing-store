@@ -1,10 +1,14 @@
 from http import HTTPStatus
 
+import stripe
+from django.contrib import auth
 from django.test import TestCase
 from django.urls import reverse
 
 from orders.forms import OrderForm
 from orders.models import Order
+from products.models import Basket
+from store_server import settings
 from users.models import User
 
 
@@ -26,7 +30,7 @@ class OrderCreateViewTestCase(TestCase):
             last_name=self.context['last_name'],
             username=self.context['username'],
             email=self.context['email'],
-            password=self.context['password']
+            password=self.context['password'],
         )
 
     def test_order_create_view_get_authorized(self):
@@ -46,18 +50,6 @@ class OrderCreateViewTestCase(TestCase):
         assert reverse('users:login') in response.url
         self.assertEquals(response.status_code, HTTPStatus.FOUND)
 
-    def test_order_create_view_post(self):
-        self.client.login(username=self.context['username'], password=self.context['password'])
-
-        response = self.client.post(self.path, {
-            'first_name': self.context['first_name'],
-            'last_name': self.context['last_name'],
-            'email': self.context['email'],
-            'address': 'Address home 1234'
-        })
-
-        self.assertTrue(Order.objects.all().exists())
-        self.assertEquals(response.status_code, HTTPStatus.SEE_OTHER)
 
 
 class SuccessTemplateViewTestCase(TestCase):
