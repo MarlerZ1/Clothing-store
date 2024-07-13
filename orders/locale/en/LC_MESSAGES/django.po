@@ -1,0 +1,144 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-13 14:12+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\templates\orders\canceled.html:12
+msgid "Заказ отменен"
+msgstr "The order has been cancelled"
+
+#: .\templates\orders\canceled.html:16
+msgid "Очень жаль, но заказ был отменен."
+msgstr "It's a pity, but the order was canceled."
+
+#: .\templates\orders\order-create.html:9
+msgid "Пожалуйста, заполните адрес электронной почты."
+msgstr "Please fill in the email address."
+
+#: .\templates\orders\order-create.html:13
+msgid "Оформление заказа"
+msgstr "Making an order"
+
+#: .\templates\orders\order-create.html:18
+msgid "Корзина"
+msgstr "Basket"
+
+#: .\templates\orders\order-create.html:26
+msgid "шт."
+msgstr "pc."
+
+#: .\templates\orders\order-create.html:28
+msgid "руб."
+msgstr "Rub."
+
+#: .\templates\orders\order-create.html:33
+msgid "Сумма к оплате"
+msgstr "Amount to be paid"
+
+#: .\templates\orders\order-create.html:39
+msgid "Адрес доставки"
+msgstr "Delivery Address"
+
+#: .\templates\orders\order-create.html:44
+msgid "Имя"
+msgstr "Name"
+
+#: .\templates\orders\order-create.html:49
+msgid "Фамилия"
+msgstr "Surname"
+
+#: .\templates\orders\order-create.html:54
+msgid "Адрес электронной почты"
+msgstr "Email"
+
+#: .\templates\orders\order-create.html:59
+msgid "Адрес"
+msgstr "Address"
+
+#: .\templates\orders\order-create.html:67
+msgid "Продолжить"
+msgstr "Continue"
+
+#: .\templates\orders\order.html:9
+msgid "Заказ"
+msgstr "Order"
+
+#: .\templates\orders\order.html:14
+msgid "Название"
+msgstr "Title"
+
+#: .\templates\orders\order.html:15
+msgid "Кол-во"
+msgstr "Count"
+
+#: .\templates\orders\order.html:16
+msgid "Цена"
+msgstr "Price"
+
+#: .\templates\orders\order.html:17
+msgid "Сумма"
+msgstr "Summ"
+
+#: .\templates\orders\order.html:36 .\templates\orders\orders.html:17
+msgid "Итого"
+msgstr "Total"
+
+#: .\templates\orders\orders.html:9
+msgid "Заказы"
+msgstr "Orders"
+
+#: .\templates\orders\orders.html:15
+msgid "Статус"
+msgstr "Status"
+
+#: .\templates\orders\orders.html:16
+msgid "Создан"
+msgstr "Created at"
+
+#: .\templates\orders\orders.html:18
+msgid "Действие"
+msgstr "Action"
+
+#: .\templates\orders\orders.html:29
+msgid "просмотреть"
+msgstr "browse"
+
+#: .\templates\orders\success.html:12
+msgid "Спасибо за заказ!"
+msgstr "Thanks for the order!"
+
+#: .\templates\orders\success.html:16
+msgid "Ваш заказ успешно сформирован."
+msgstr "Your order has been successfully completed."
+
+#: .\views.py:23
+
+msgid "Store - Оформление заказа"
+msgstr "Store - Making an order"
+
+#: .\views.py:51
+msgid "Store - Заказы"
+msgstr "Store - Orders"
+
+#: .\views.py:72
+msgid "Store - Спасибо за заказ!"
+msgstr "Store -Thanks for the order!"
+
+#: .\views.py:77
+msgid "Store - Заказ отменен"
+msgstr "Store - The order has been cancelled"

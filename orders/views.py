@@ -4,6 +4,7 @@ import stripe
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse_lazy, reverse
+from django.utils.translation import gettext_lazy as _, gettext
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import CreateView, TemplateView, ListView, DetailView
 
@@ -19,7 +20,7 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 # Create your views here.
 class OrderCreateView(LoginRequiredMixin, TitleMixin, CreateView):
     template_name = 'orders/order-create.html'
-    title = 'Store - Оформление заказа'
+    title = _('Store - Оформление заказа')
     form_class = OrderForm
     success_url = reverse_lazy('orders:order_success')
 
@@ -47,7 +48,7 @@ class OrderCreateView(LoginRequiredMixin, TitleMixin, CreateView):
 
 class OrderListView(TitleMixin, ListView):
     template_name = 'orders/orders.html'
-    title = 'Store - Заказы'
+    title = _('Store - Заказы')
     model = Order
     ordering = ('-created',)
 
@@ -62,18 +63,18 @@ class OrderDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(OrderDetailView, self).get_context_data(**kwargs)
-        context['title'] = f'Store - Заказ #{self.object.id}'
+        context['title'] = f'Store - {gettext("Заказ")} #{self.object.id}'
         return context
 
 
 class SuccessTemplateView(LoginRequiredMixin, TitleMixin, TemplateView):
     template_name = 'orders/success.html'
-    title = 'Store - Спасибо за заказ!'
+    title = _('Store - Спасибо за заказ!')
 
 
 class CancelTemplateView(LoginRequiredMixin, TitleMixin, TemplateView):
     template_name = 'orders/canceled.html'
-    title = 'Store - Заказ отменен'
+    title = _('Store - Заказ отменен')
 
 
 @csrf_exempt

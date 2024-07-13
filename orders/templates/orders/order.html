@@ -6,15 +6,15 @@
     <section>
         <div class="container pt-5">
             <div class="text-center mt-5">
-                <h1>Заказ №{{ object.id }}</h1>
+                <h1>{% translate 'Заказ' %} №{{ object.id }}</h1>
                 <div class="orders mt-5">
                     <table class="table">
                         <thead>
                         <tr>
-                            <th scope="col">Название</th>
-                            <th scope="col">Кол-во</th>
-                            <th scope="col">Цена</th>
-                            <th scope="col">Сумма</th>
+                            <th scope="col">{% translate 'Название' %}</th>
+                            <th scope="col">{% translate 'Кол-во' %}</th>
+                            <th scope="col">{% translate 'Цена' %}</th>
+                            <th scope="col">{% translate 'Сумма' %}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -24,8 +24,8 @@
                                     {{ purchased_item.product_name }}
                                 </th>
                                 <td>{{ purchased_item.quantity }}</td>
-                                <td>{{ purchased_item.price|intcomma }} руб.</td>
-                                <td>{{ purchased_item.sum|intcomma }} руб.</td>
+                                <td>{{ purchased_item.price|intcomma }} {% translate 'руб.' %}</td>
+                                <td>{{ purchased_item.sum|intcomma }} {% translate 'руб.' %}</td>
 
                             </tr>
                         {% endfor %}
@@ -33,7 +33,7 @@
 
                         </tbody>
                     </table>
-                    <p class="float-right h4 mt-3">Итого {{ object.basket_history.total_sum|intcomma }} руб.</p>
+                    <p class="float-right h4 mt-3">{% translate 'Итого' %} {{ object.basket_history.total_sum|intcomma }} {% translate 'руб.' %}</p>
                 </div>
             </div>
         </div>
