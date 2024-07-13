@@ -34,7 +34,6 @@ class OrderCreateViewTestCase(TestCase):
 
         response = self.client.get(self.path)
 
-
         self.assertEquals(response.status_code, HTTPStatus.OK)
         self.assertTemplateUsed('orders/order-create.html')
         self.assertEquals(response.context_data['title'], 'Store - Оформление заказа')
@@ -46,11 +45,85 @@ class OrderCreateViewTestCase(TestCase):
 
         assert reverse('users:login') in response.url
         self.assertEquals(response.status_code, HTTPStatus.FOUND)
+
     def test_order_create_view_post(self):
         self.client.login(username=self.context['username'], password=self.context['password'])
 
-        response = self.client.post(self.path, first_name=self.context['first_name'], last_name=self.context['last_name'],
-                                    email=self.context['email'], address='Address home 1234')
+        response = self.client.post(self.path, {
+            'first_name': self.context['first_name'],
+            'last_name': self.context['last_name'],
+            'email': self.context['email'],
+            'address': 'Address home 1234'
+        })
 
         self.assertTrue(Order.objects.all().exists())
-        self.assertRedirects(response, reverse('orders:success'), fetch_redirect_response=False)
+        self.assertEquals(response.status_code, HTTPStatus.SEE_OTHER)
+
+
+class SuccessTemplateViewTestCase(TestCase):
+    def setUp(self):
+        self.path = reverse('orders:order_success')
+
+        self.context = {
+            'first_name': 'Kirill',
+            'last_name': 'Merzlyakov',
+            'username': 'asdsa',
+            'email': 'fffff@yandex.ru',
+            'password': '12345678QqQqQ'
+        }
+        User.objects.create_user(
+            first_name=self.context['first_name'],
+            last_name=self.context['last_name'],
+            username=self.context['username'],
+            email=self.context['email'],
+            password=self.context['password']
+        )
+
+    def test_success_template_view_authorized(self):
+        self.client.login(username=self.context['username'], password=self.context['password'])
+
+        response = self.client.get(self.path)
+
+        self.assertTemplateUsed(response, 'orders/success.html')
+        self.assertEquals(response.context_data['title'], 'Store - Спасибо за заказ!')
+        self.assertEquals(response.status_code, HTTPStatus.OK)
+
+    def test_success_template_view_unauthorized(self):
+        response = self.client.get(self.path)
+
+        self.assertEquals(response.status_code, HTTPStatus.FOUND)
+        assert reverse('users:login') in response.url
+
+
+class CanceledTemplateViewTestCase(TestCase):
+    def setUp(self):
+        self.path = reverse('orders:order_canceled')
+
+        self.context = {
+            'first_name': 'Kirill',
+            'last_name': 'Merzlyakov',
+            'username': 'asdsa',
+            'email': 'fffff@yandex.ru',
+            'password': '12345678QqQqQ'
+        }
+        User.objects.create_user(
+            first_name=self.context['first_name'],
+            last_name=self.context['last_name'],
+            username=self.context['username'],
+            email=self.context['email'],
+            password=self.context['password']
+        )
+
+    def test_success_template_view(self):
+        self.client.login(username=self.context['username'], password=self.context['password'])
+
+        response = self.client.get(self.path)
+
+        self.assertTemplateUsed(response, 'orders/canceled.html')
+        self.assertEquals(response.context_data['title'], 'Store - Заказ отменен')
+
+    def test_success_template_view_unauthorized(self):
+        response = self.client.get(self.path)
+
+        self.assertEquals(response.status_code, HTTPStatus.FOUND)
+        assert reverse('users:login') in response.url

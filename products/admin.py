@@ -6,7 +6,7 @@ from products.models import Product, ProductCategory, Basket
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ['name', 'price', 'quantity']
+    list_display = ['name', 'price', 'quantity', 'stripe_product_price_id']
 
 
 

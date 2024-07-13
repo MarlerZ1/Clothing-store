@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
+from orders.views import stripe_webhook_view
 from products.views import IndexView
 from django.conf.urls.static import static
 from django.conf import settings
@@ -28,6 +30,7 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
     path('accounts/', include('allauth.urls')),
     path('orders/', include('orders.urls', namespace='orders')),
+    path('webhook/stripe/', stripe_webhook_view, name='stripe_webhook')
 ] + debug_toolbar_urls()
 
 if settings.DEBUG:
