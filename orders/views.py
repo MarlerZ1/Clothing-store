@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, TemplateView, ListView
 
 from common.views import TitleMixin
 from orders.forms import OrderForm
@@ -27,6 +27,10 @@ class OrderCreateView(LoginRequiredMixin, TitleMixin, CreateView):
     success_url = reverse_lazy('orders:order_success')
 
     def post(self, request, *args, **kwargs):
+        last_order = Order.objects.filter(initiator=self.request.user).last()
+        if last_order and last_order.status == 0:
+            last_order.delete()
+            
         super(OrderCreateView, self).post(self, request, *args, **kwargs)
         baskets = Basket.objects.filter(user=self.request.user)
 
@@ -43,6 +47,15 @@ class OrderCreateView(LoginRequiredMixin, TitleMixin, CreateView):
         form.instance.initiator = self.request.user
         return super().form_valid(form)
 
+
+class OrderListView(TitleMixin, ListView):
+    template_name = 'orders/orders.html'
+    title = 'Store - Заказы'
+    model = Order
+    ordering = ('-created',)
+    def get_queryset(self):
+        queryset = super(OrderListView,self).get_queryset()
+        return queryset.filter(initiator=self.request.user)
 
 class SuccessTemplateView(LoginRequiredMixin, TitleMixin, TemplateView):
     template_name = 'orders/success.html'
