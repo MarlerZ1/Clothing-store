@@ -9,13 +9,13 @@ from products.models import Product, ProductCategory, Basket
 from django.utils.translation import gettext_lazy as _
 
 class IndexView(TitleMixin, TemplateView):
-    template_name = 'products\index.html'
+    template_name = 'products/index.html'
     title = _('Store - Главная')
 
 
 class ProductsListView(TitleMixin, ListView):
     model = Product
-    template_name = "products\products.html"
+    template_name = "products/products.html"
     paginate_by = 3
     title = _('Store - Каталог')
 

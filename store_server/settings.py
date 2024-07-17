@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 DOMAIN_NAME = os.getenv('DOMAIN_NAME')
 
@@ -74,7 +74,9 @@ ROOT_URLCONF = 'store_server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'products/templates']
+        'DIRS': [os.path.join(BASE_DIR, 'products/templates'),
+                 os.path.join(BASE_DIR, 'users/templates'),
+                 os.path.join(BASE_DIR, 'orders/templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -137,10 +139,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
-]
+)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -198,7 +202,7 @@ CACHES = {
 CELERY_BROKER_URL = F'redis://{REDIS_HOST}:{REDIS_POST}'
 CELERY_RESULT_BACKEND = F'redis://{REDIS_HOST}:{REDIS_POST}'
 
-#STRIPE
+# STRIPE
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
