@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from rest_framework.authtoken import views
 from orders.views import stripe_webhook_view
 from products.views import IndexView
 from django.conf.urls.static import static
@@ -30,7 +30,9 @@ urlpatterns = [
     path('users/', include('users.urls', namespace='users')),
     path('accounts/', include('allauth.urls')),
     path('orders/', include('orders.urls', namespace='orders')),
-    path('webhook/stripe/', stripe_webhook_view, name='stripe_webhook')
+    path('webhook/stripe/', stripe_webhook_view, name='stripe_webhook'),
+    path('api/', include('api.urls', namespace='api')),
+    path('api-token-auth/', views.obtain_auth_token)
 ] + debug_toolbar_urls()
 
 if settings.DEBUG:
